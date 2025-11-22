@@ -1,0 +1,26 @@
+# Gera pressão nas unidades funcionais: ADD, MUL, LW, SW
+LW  R1 0(R20)
+LW  R2 4(R20)
+LW  R3 8(R20)
+LW  R4 12(R20)
+
+MUL R10 R1 R2
+MUL R11 R2 R3
+MUL R12 R3 R4
+MUL R13 R4 R1
+
+ADD R14 R10 R11
+ADD R15 R11 R12
+ADD R16 R12 R13
+ADD R17 R13 R10
+
+SW R14 0(R21)
+SW R15 4(R21)
+SW R16 8(R21)
+SW R17 12(R21)
+
+# Repete padrão para gerar ainda mais ciclos
+MUL R18 R14 R15
+MUL R19 R16 R17
+ADD R22 R18 R19
+SW R22 16(R21)
